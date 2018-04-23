@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+
+
+
 <html>
   <head>
     <title>SApp</title>
@@ -9,6 +13,26 @@
   </head>
 
   <body>
+    <body>
+       <header>
+         <div class="header-logo">
+           <%= link_to("picts", "/") %>
+         </div>
+         <ul class="header-menus">
+           <li>
+             <%= link_to("pictsとは", "/about") %>
+           </li>
+           <li>
+             <%= link_to("ユーザー一覧", "/users/index") %>
+           </li>
+
+           <li>
+   <%= link_to("ログイン", "/login") %>
+ </li>
+         </ul>
+       </header>
+
+
     <%= yield %>
   </body>
 </html>
