@@ -7,10 +7,13 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @id =  params[:id]
   end
-
   def new
-    @post = Post.find_by(id: params[:id])
-    @post.image_name = "#{@user.id}#{created_at}.jpg"
-    if @post.save
+  end
+
+  def create
+    #@post = Post.find_by(id: params[:id])
+    #@user = User.find_by(id: params[:id])
+    #@post.image_name = "#{@user.id}#{@post.id}.jpg"
+    redirect_to("/posts/index")
   end
 end

@@ -3,7 +3,7 @@
     <h1 class="form-heading">投稿する</h1>
     <div class="form">
       <div class="form-body">
-         <%= form_tag("/users/#{@user.id}/update" , {multipart: true}) do %>
+         <%= form_tag("/posts/create" , {multipart: true}) do %>
         <input name="image" type="file" value="投稿">
         <input type="submit" value="投稿">
       </div>
