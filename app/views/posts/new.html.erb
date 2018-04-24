@@ -5,9 +5,12 @@
       <div class="form-body">
 
 
+        <%= form_tag("/posts/create", {multipart: true}) do %>
 
-                 <input name="image" type="file">
-             <input type="submit" value="投稿">
+
+                   <input name="image" type="file">
+                 <input type="submit" value="投稿">
+                   <%end%>
       </div>
     </div>
   </div>

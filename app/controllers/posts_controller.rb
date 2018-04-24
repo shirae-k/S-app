@@ -14,12 +14,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(content: params[:content])
-     @post.save
-     redirect_to("/posts/index")
-    #@post = Post.find_by(id: params[:id])
-    #@user = User.find_by(id: params[:id])
-    #@post.content = "#{@user.id}#{@post.id}.jpg"
-    #redirect_to("/posts/index")
+
+   @post = Post.find_by(id: params[:id])
+   @user = User.find_by(id: params[:id])
+   @post.name = "#{@user.id}#{@post.id}.jpg"
+
+
+    image = params[:image]
+    redirect_to("/posts/index")
+    File.binwrite("public/post_images/#{@post.name}",image.read)
+
+
   end
+
 end
