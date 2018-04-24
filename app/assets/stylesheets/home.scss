@@ -50,17 +50,18 @@ body {
   width: 100%;
   height: auto;
   min-height: 100%;
-  background-color: #f5f8fa;
+  background-color: #d7e5d5;
 }
 
 .container {
-  max-width: 600px;
+
+
   margin: 60px auto;
   padding-left: 15px;
   padding-right: 15px;
   clear: both;
 }
-
+  /* max-width: 600px;
 /* ヘッダー ================================ */
 header {
   height: 64px;
@@ -210,7 +211,7 @@ header {
 }
 
 .form input[type="submit"] {
-  background-color: #3ecdc6;
+  background-color: #297a6c;
   color: white;
   cursor: pointer;
   font-weight: 300;
