@@ -17,12 +17,12 @@ class PostsController < ApplicationController
 
    @post = Post.find_by(id: params[:id])
    @user = User.find_by(id: params[:id])
-   @post.name = "#{@user.id}#{@post.id}.jpg"
 
+   @posts.content = "#{@user.id}#{@post.id}.jpg"
 
     image = params[:image]
     redirect_to("/posts/index")
-    File.binwrite("public/post_images/#{@post.name}",image.read)
+    File.binwrite("public/post_image/#{@posts.content}",image.read)
 
 
   end
