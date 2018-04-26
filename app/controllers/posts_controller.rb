@@ -11,6 +11,7 @@ before_action :authenticate_user
 
   def show
     @post = Post.find_by(id: params[:id])
+    @user = User.find_by(id: @post.user_id)
     @id =  params[:id]
   end
 
@@ -20,9 +21,9 @@ before_action :authenticate_user
   end
 
   def create
-  @post = Post.new(content: params[:content])
-   @user = User.find_by(id: params[:id])
-   @post.content = "#{@user.id}#{@post.id}.jpg"
+  @post = Post.new(content: params[:content],
+                   user_id: @current_user.id)
+   @post.content = "#{user_id}#{@post.id}.jpg"
 
     image = params[:image]
     File.binwrite("public/post_image/#{@post.content}",image.read)
