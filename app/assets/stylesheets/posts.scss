@@ -46,9 +46,16 @@
 }
 
 .posts-show-item .post-user-name a {
-  vertical-align: middle;
+  vertical-align: center;
   font-size: 24px;
-  margin-left: 15px;
+
+  .user-name {
+    width:200px;
+    height:auto;
+    margin:0;
+    text-align:center;
+  }
+
 }
 
 .posts-show-item p {

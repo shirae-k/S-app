@@ -4,9 +4,19 @@
     <% @posts.each do |post| %>
 
     <div class="posts-index-item">
-       <<%= link_to(post.content ,"/posts/#{post.id}") %>
+      <div class="post-left">
+          <img src="<%= "/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+          </div>
 
 
+          <%= link_to("/posts/#{post.id}") do  %>
+          <img src="<%="/post_image/#{post.content}"%>"
+          <% end %>
+        </div>
     </div>
       <% end %>
   </div>

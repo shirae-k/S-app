@@ -2,11 +2,20 @@
   <div class="container">
     <div class="posts-show-item">
       <dev class = "post-user-name">
-        <img src =<%- "/user_images/#{@user.image_name}" %>">
+        <img src ="<%= "/post_image/#{@post.content}" %>">
+        <div user-name>
         <%= link_to(@user.name,"/users/#{@user.id}") %>
-      <%= @post.content %>
+       </div>
       <div class= "post-time">
         <%= @post.created_at %>
+
+      <% if @current_user.id == @user.id %>
+            <div class="post-menus">
+               <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+                <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+           </div>
+        <%end%>
+
     </div>
   </div>
 </div>

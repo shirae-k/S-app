@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
 
 before_action :authenticate_user
-
-
+before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
 
 
   def index
@@ -11,7 +10,7 @@ before_action :authenticate_user
 
   def show
     @post = Post.find_by(id: params[:id])
-    @user = User.find_by(id: @post.user_id)
+    @user = @post.user
     @id =  params[:id]
   end
 
@@ -23,14 +22,39 @@ before_action :authenticate_user
   def create
   @post = Post.new(content: params[:content],
                    user_id: @current_user.id)
-   @post.content = "#{user_id}#{@post.id}.jpg"
+  require "date"
+  @time = DateTime.now
+
+   @post.content = "#{@post.user_id}#{@time}.jpg"
 
     image = params[:image]
     File.binwrite("public/post_image/#{@post.content}",image.read)
     @post.save
-
-    #redirect_to("/posts/index")
-
+    redirect_to("/posts/index")
   end
 
-end
+  def edit
+ @post = Post.find_by(id: params[:id])
+  end
+
+ def update
+   @post = Post.find_by(id: params[:id])
+     @post.content = params[:content]
+     if @post.save
+       flash[:notice] = "投稿を編集しました"
+       redirect_to("/posts/index")
+     else
+       render("posts/edit")
+ end
+  end
+
+
+ def ensure_crrect_user
+   @post = Post.find_by(id: params[:id])
+   if @post.user_id != @current_user.id
+     flash[:notice] = "権限がありません"
+     redirect_to("/posts/index")
+   end
+ end
+
+  end
