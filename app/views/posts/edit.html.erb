@@ -1,13 +1,22 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">編集する</h1>
-    <div class="form">
+
+    <%= form_tag("/posts/#{@post.id}/update",{multipart: true}) do %>
+
+
       <div class="form-body">
-   <%= form_tag("/posts/#{@post.id}/update") do %>
+        <% @post.errors.full_messages.each do |message| %>
+           <div class="form-error">
+             <%= message %>
+           </div>
+         <% end %>
+     <div class = "image-size">
+       <name = "content"><img src ="<%= "/post_image/#{@post.content}" %>">
+    </div>
 
-
-       <%= name="content" @post.content %>
-
+      <div class="form">
+      <input name="image" type="file">
       <input type="submit" value="保存">
        </div>
      </div>
