@@ -1,0 +1,10 @@
+post controller
+
+
+
+def ensure_crrect_user
+     if params[:id].to_i != @crrect_user.id
+       flash[:notice] =Å@"å†å¿Ç»Ç¢Ç≈Ç∑"
+       redirect_to("/posts/index")
+ Å@    end
+  end

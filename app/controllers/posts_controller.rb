@@ -19,30 +19,36 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
   @post = Post.new
   end
 
+
   def create
   @post = Post.new(content: params[:content],
                    user_id: @current_user.id)
-  require "date"
-  @time = DateTime.now
+          image = params[:image]
+        if image = params[:image] != nil
+         require "date"
+          @time = DateTime.now
+          @post.content = "#{@post.user_id}#{@time}.jpg"
+          image = params[:image]
+          File.binwrite("public/post_image/#{@post.content}",image.read)
+          @post.save
+          redirect_to("/posts/index")
+         else
+          render("posts/new")
 
-   @post.content = "#{@post.user_id}#{@time}.jpg"
+        end
 
-    image = params[:image]
-    File.binwrite("public/post_image/#{@post.content}",image.read)
+end
 
-    @post.save
-    redirect_to("/posts/index")
-  end
 
   def edit
  @post = Post.find_by(id: params[:id])
   end
 
+
+
  def update
    @post = Post.find_by(id: params[:id],
                         user_id: @current_user.id)
-
-
    if params[:image]
        @time = DateTime.now
        @post.content = "#{@post.user_id}#{@time}.jpg"
@@ -54,9 +60,11 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
        flash[:notice] = "投稿を編集しました"
        redirect_to("/posts/index")
      else
-       render("posts/edit")
+      render("posts/edit")
  end
   end
+
+
 
   def destroy
     @post = Post.find_by(id: params[:id])
