@@ -4,33 +4,33 @@ class UsersController < ApplicationController
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
   before_action :ensure_correct_user,{only: [:edit, :update]}
 
-  def index
+ def index
     @users = User.all
-  end
-
-  def show
-    @user = User.find_by(id: params[:id])
-  end
-
- def edit
-  @user = User.find_by(id: params[:id])
  end
 
-def update
-    @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
- if params[:image]
-     @user.image_name = "#{@user.id}.jpg"
-     image = params[:image]
-     File.binwrite("public/user_images/#{@user.image_name}",image.read)
-end
- if @user.save
-     redirect_to("/users/#{@user.id}")
- else
-     render("users/edit")
+ def show
+      @user = User.find_by(id: params[:id])
+ end
 
-end
+ def edit
+     @user = User.find_by(id: params[:id])
+ end
+
+ def update
+     @user = User.find_by(id: params[:id])
+     @user.name = params[:name]
+     @user.email = params[:email]
+    if params[:image]
+       @user.image_name = "#{@user.id}.jpg"
+       image = params[:image]
+       File.binwrite("public/user_images/#{@user.image_name}",image.read)
+    end
+    if @user.save
+       redirect_to("/users/#{@user.id}")
+   else
+       render("users/edit")
+
+   end
 end
 
 
@@ -43,16 +43,16 @@ end
    @user = User.new(name: params[:name],
                     email: params[:email],
                     password: params[:password],
-                  image_name: "default_user_image.jpeg"
-                )
-    if @user.save
+                    image_name: "default_user_image.jpeg"
+                   )
+     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "登録が完了しました"
       redirect_to("/users/#{@user.id}")
-      else
+     else
       render("users/new")
-      end
-      end
+     end
+  end
 
 
  def login_form
@@ -61,29 +61,33 @@ end
  def login
      @user = User.find_by(email: params[:email], password: params[:password])
          if @user
-          session[:user_id] = @user.id
-         flash[:notice] = "ログインしました"
-         redirect_to("/users/index")
+            session[:user_id] = @user.id
+            flash[:notice] = "ログインしました"
+            redirect_to("/users/index")
          else
-          @error_message ="メールアドレスかパスワードが間違ってます"
-          @email  = params[:email]
-          @password = params[:password]
-          render("users/login_form")
+            @error_message ="メールアドレスかパスワードが間違ってます"
+            @email  = params[:email]
+            @password = params[:password]
+            render("users/login_form")
 
          end
  end
  def logout
-   session[:user_id] = nil
-   flash[:notice] ="ログアウトしました"
-   redirect_to("/login")
+     session[:user_id] = nil
+     flash[:notice] ="ログアウトしました"
+     redirect_to("/login")
  end
 
+ def likes
+   @user = User.find_by(id: params[:id])
+   @like_posts = @user.like_posts
+ end
 
  def ensure_correct_user
-   if  @current_user.id != params[:id].to_i
-     flash[:notice] = "権限がないです"
-     redirect_to("/users/index")
-  end
+     if  @current_user.id != params[:id].to_i
+        flash[:notice] = "権限がないです"
+        redirect_to("/users/index")
+     end
  end
 
 end
