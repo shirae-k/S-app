@@ -13,14 +13,11 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
     @user = @post.user
     @id =  params[:id]
     @likes_count = Like.where(post_id: @post.id).count
-
     @count = @post.count
-
-    if @current_user == @user
-         @count =  @count  +  0
-       else
-         @count =  @count  +  1
+    if @current_user != @user
+        @count = @count  +  1
         end
+
   end
 
 
@@ -82,7 +79,7 @@ end
     @post = Post.find_by(id: params[:id])
     @post.content = params[:content]
     @post.destroy
-    redirect_to("/posts/index")
+    redirect_to("/users/#{@post.user_id}")
 
   end
 

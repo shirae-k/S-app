@@ -15,17 +15,14 @@
          <div class="header-logo">
 
            <% if @current_user %>
-                 <%= link_to("picts", "/posts/index") %>
+                 <%= link_to("Picts", "/posts/index") %>
             <% else %>
-                <%= link_to("picts", "/") %>
+                <%= link_to("Picts", "/") %>
            <% end %>
 
          </div>
          <ul class="header-menus">
-
                      <% if @current_user  %>
-
-
                  <li>
                           <%= link_to(@current_user.name,"/users/#{@current_user.id}")  %>
                 </li>
