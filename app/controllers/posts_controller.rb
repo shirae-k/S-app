@@ -13,7 +13,17 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
     @user = @post.user
     @id =  params[:id]
     @likes_count = Like.where(post_id: @post.id).count
+
+    @count = @post.count
+
+    if @current_user == @user
+         @count =  @count  +  0
+       else
+         @count =  @count  +  1
+        end
   end
+
+
 
 
   def new
@@ -24,6 +34,7 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
   def create
   @post = Post.new(content: params[:content],
                    user_id: @current_user.id)
+  @post.count  = 0
           image = params[:image]
         if image = params[:image] != nil
          require "date"
@@ -83,5 +94,8 @@ end
      redirect_to("/posts/index")
    end
  end
+
+
+
 
   end

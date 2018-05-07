@@ -21,6 +21,8 @@
           <% end %>
           <%= @likes_count %>
 
+          <p>閲覧数　<%= @count %></p>
+
       <% if @current_user.id == @user.id %>
             <div class="post-menus">
                <%= link_to("編集", "/posts/#{@post.id}/edit") %>
