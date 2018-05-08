@@ -7,12 +7,13 @@
 }
 
 .users-index-item {
+  margin: auto;
   padding: 20px 30px;
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
   display: table;
-  width: 100%;
+  width: 70%;
 }
 
 .user-left img {
@@ -96,6 +97,7 @@
 }
 
 .user-tabs {
+  margin: auto;
   margin-top: 40px;
   background-color: white;
   overflow: hidden;

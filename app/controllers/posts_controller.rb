@@ -15,9 +15,9 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
     @likes_count = Like.where(post_id: @post.id).count
     @count = @post.count
     if @current_user != @user
-        @count = @count  +  1
+        @post.count = @count  +  1
         end
-
+     @post.save
   end
 
 
