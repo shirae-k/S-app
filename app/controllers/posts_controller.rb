@@ -32,18 +32,18 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
   @post = Post.new(content: params[:content],
                    user_id: @current_user.id)
   @post.count  = 0
-          image = params[:image]
-        if image = params[:image] != nil
+          @image = image = params[:image]
+        if @image != nil
          require "date"
           @time = DateTime.now
           @post.content = "#{@post.user_id}#{@time}.jpg"
-          image = params[:image]
           File.binwrite("public/post_image/#{@post.content}",image.read)
-          @post.save
+        if @post.save
+          flash[:notice] = "投稿に成功しました"
           redirect_to("/posts/index")
          else
           render("posts/new")
-
+        end
         end
 
 end
