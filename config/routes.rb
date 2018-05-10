@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "about" => "home#about"
 
 
+
   get "posts/index" => "posts#index"
   get  "posts/new"  => "posts#new"
   post "posts/create" =>"posts#create"
@@ -12,8 +13,12 @@ Rails.application.routes.draw do
   post "posts/:id/update" => "posts#update"
   post "posts/:id/destroy" => "posts#destroy"
 
-  get "posts/:id" => "comment#com_new"
-  post "posts/:id" => "comment#com_create"
+
+
+  get "comments/:id/show" => "comments#show"
+
+
+
 
   get "users/index" => "users#index"
   get "users/:id" => "users#show"

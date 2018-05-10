@@ -1,0 +1,7 @@
+<div class="post-comment">
+
+  <%= form_tag("posts/#{@comment.post_id}/comment/create") do %>
+
+<textarea name = "com"></textarea>
+<input type="submit" value="コメントする！">
+</div>

@@ -11,13 +11,15 @@ before_action :ensure_crrect_user, {only: [:edit, :update, :destroy]}
   def show
     @post = Post.find_by(id: params[:id])
     @user = @post.user
-    @id =  params[:id]
     @likes_count = Like.where(post_id: @post.id).count
     @count = @post.count
     if @current_user != @user
         @post.count = @count  +  1
         end
      @post.save
+
+
+
   end
 
 
