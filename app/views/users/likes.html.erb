@@ -4,30 +4,39 @@
      <div class = "user-image">
       <img src="<%= "/user_images/#{@user.image_name}" %>">
         </div>
+        <!--　ユーザーの名前表示　-->
       <h2><%= @user.name %></h2>
+      <!--　ログインしているユーザーとユーザーのidが一致したときの処理　-->
       <% if @user.id == @current_user.id %>
+      <!--　ユーザーの編集画面へリンク　-->
         <%= link_to("編集", "/users/#{@user.id}/edit") %>
       <% end %>
     </div>
 
     <ul class="user-tabs">
+      <!--　ユーザーが投稿した一覧へのリンク　-->
       <li><%= link_to("投稿", "/users/#{@user.id}") %></li>
+      <!--　ユーザーがいいねした一覧へのリンク　-->
       <li class="active"><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
     </ul>
-
+　　　　<!--　ユーザーがいいねした投稿を分配している　-->
     <%  @like_posts.each do |post| %>
 
 
-      <div class="posts-index-item">
-        <div class="post-left">
+      <div class="like-posts-index-item">
+        <div class="like-post-left">
+          <!--　いいねされたユーザーのプロフィール画像　-->
           <img src="<%= "/user_images/#{post.user.image_name}" %>">
         </div>
-        <div class="post-right">
-          <div class="post-user-name">
+        <div class="like-post-right">
+          <div class="like-post-user-name">
+              <!--　いいねされたユーザーの名前表示とプロフィールへのリンク　-->
             <%= link_to(post.user.name, "/users/#{post.user.id}") %>
           </div>
           <div class= "likes-posts">
+              <!--　いいねされたユーザーの投稿の詳細ページへのリンク　-->
           <%= link_to("/posts/#{post.id}") do  %>
+            <!--　いいねされたユーザーの投稿　-->
           <img src="<%="/post_image/#{post.content}"%>"
           <% end %>
           </div>

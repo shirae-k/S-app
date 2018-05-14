@@ -2,35 +2,48 @@
   <div class="container">
     <div class="posts-show-item">
       <dev class = "post-user-name">
+
+        
+        <dev class = "post-image">
+        <!--　postの画像を表示　-->
         <img src ="<%= "/post_image/#{@post.content}" %>">
+       </dev>
+
         <div user-name>
+          <!--　userのプロフィール画像を表示　-->
         <%= link_to(@user.name,"/users/#{@user.id}") %>
        </div>
       <div class= "post-time">
+        <!--　画像の投稿時間を表示　-->
         <%= @post.created_at %>
-
+            <!--　現在ログインしているユーザーがいいねした投稿を取得　-->
           <% if Like.find_by(user_id: @current_user.id,post_id: @post.id) %>
+          <!-- いいねを削除している -->
               <%= link_to("/likes/#{@post.id}/destroy",{method: "post"}) do %>
+              <!-- いいねをハートのアイコン化（灰色） -->
               <span class= "fa fa-heart like-btn-unlike"></span>
            <% end %>
            <% else %>
-
+             <!-- いいねを作成している -->
           <%= link_to("/likes/#{@post.id}/create",{method: "post"}) do %>
+          <!-- いいねをハートのアイコン化（ピンク） -->
           <span class = "fa fa-heart like-btn"></span>
           <% end %>
           <% end %>
+            <!-- いいねを数え、数を表示する -->
           <%= @likes_count %>
-
+            <!-- 閲覧数を数え、数を表示する -->
           <p>閲覧数　<%= @count %></p>
-
+          <!-- 現在ログインしているユーザーと、ユーザーのidが一致したときの処理 -->
       <% if @current_user.id == @user.id %>
             <div class="post-menus">
+              <!-- 編集と削除をできるようにlinkしている -->
                <%= link_to("編集", "/posts/#{@post.id}/edit") %>
                 <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
            </div>
         <%end%>
 
-  
+    </div>
     </div>
   </div>
 </div>

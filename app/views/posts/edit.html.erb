@@ -1,22 +1,27 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">編集する</h1>
-
-    <%= form_tag("/posts/#{@post.id}/update",{multipart: true}) do %>
+        <!--　画像の受け取り　-->
+   <%= form_tag("/posts/#{@post.id}/update",{multipart: true}) do %>
 
 
       <div class="form-body">
+        <!-- エラーメッセージを分配する -->
         <% @post.errors.full_messages.each do |message| %>
            <div class="form-error">
+             <!--　メッセージの表示　-->
              <%= message %>
            </div>
          <% end %>
      <div class = "image-size">
+       <!--　画像の表示　-->
        <img src ="<%= "/post_image/#{@post.content}" %>">
     </div>
 
       <div class="form">
+        <!--　画像が選択できるようにfileを指定し、imageでparamsで受け取れるようにしている　-->
       <input name="image" type="file">
+       <!--　ボタンであることを表す　-->
       <input type="submit" value="保存">
        </div>
      </div>

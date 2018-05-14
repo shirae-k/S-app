@@ -4,9 +4,11 @@
     <div class="form">
       <div class="form-body">
 
-
+          <!--　フォームの入力をpostsのcreateに飛ばす　-->
         <%= form_tag("/posts/create", {multipart: true}) do %>
+              <!--　画像を投稿するためのフォーム　-->
                    <input name="image" type="file">
+                   <!--　ボタンであることを表す　-->
                  <input type="submit" value="投稿">
          <%end%>
       </div>

@@ -1,19 +1,23 @@
 
 <div class="main posts-index">
   <div class="container">
+    <!-- postをerchで分配して一つずつ表示する -->
     <% @posts.each do |post| %>
 
   <div class="posts-index-item">
 
           <div class="post-user">
+              <!--　userのプロフィール画像の表示　-->
                <img src="<%= "/user_images/#{post.user.image_name}" %>">
-
+                <!--　user詳細ページへのリンク　-->
                   <%= link_to(post.user.name, "/users/#{post.user.id}") %>
 
           </div>
 
         <div class="index-image">
+          <!--　postの詳細ページへのリンク　-->
           <%= link_to("/posts/#{post.id}") do  %>
+          <!--　post.contentの表示　-->
           <img src="<%="/post_image/#{post.content}"%>"
           <% end %>
         </div>

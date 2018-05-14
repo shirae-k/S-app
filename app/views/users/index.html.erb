@@ -1,11 +1,14 @@
 <div class="main users-index">
   <div class="container">
     <h1 class="users-heading">ユーザー一覧</h1>
+     <!--　取得したユーザーを分配している　-->
     <% @users.each do |user| %>
-    
+
       <div class="users-index-item">
+         <!--　ユーザーのプロフィール画像の表示　-->
               <img src="<%= "/user_images/#{user.image_name}" %>">
         <div class="user-right">
+          <!--　ユーザーの名前の表示とユーザー詳細ページへのリンク　-->
           <%= link_to(user.name, "/users/#{user.id}") %>
             </div>
 

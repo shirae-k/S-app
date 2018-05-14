@@ -4,27 +4,31 @@
     <div class="form users-form">
       <div class="form-body">
 
+          <!--　エラーメッセージの分配　-->
         <% @user.errors.full_messages.each do |message| %>
        <div class="form-error">
+          <!--　メッセージの表示　-->
          <%= message %>
        </div>
      <% end %>
 
-
+        <!--　入力を受け取る　-->
         <%= form_tag("/users/create") do %>
 
 
         <p>ユーザー名</p>
+         <!--　入力したことのある名前の表示と入力フォーム　-->
         <input name="name" "<% value=@user.name %>">
 
 
         <p>メールアドレス</p>
+             <!--　入力したことのあるemailの表示と入力フォーム　-->
          <input name = "email" "<% value=@user.email %>">
 
          <p>パスワード</p>
-
+         <!--　入力したことのあるpasswardの表示と入力フォーム　-->
          <input type = "password"  name="password" "<% value=@user.password %>">
-
+       <!--　ボタンであることを表す　-->
         <input type="submit" value="新規登録">
 
             <% end %>

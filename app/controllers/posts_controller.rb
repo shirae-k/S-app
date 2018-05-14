@@ -105,21 +105,27 @@ end
    end
   end
 
-
-
+#postを削除に関するメソッド
   def destroy
+    #post_idをURLからルーティングのURLから取得する
     @post = Post.find_by(id: params[:id])
+    #post.contentをidと等しい投稿を取得する
     @post.content = params[:content]
+    #@post.destroyで削除する
     @post.destroy
+    #redirect_toでuserの詳細ページに飛ばす
     redirect_to("/users/#{@post.user_id}")
-
   end
 
-
+#現在ログインしているユーザー以外のユーザーが権限のないページを表示しようとしたときに出すflashに関するメソッド
  def ensure_crrect_user
+   #post_idをURLからルーティングのURLから取得する
    @post = Post.find_by(id: params[:id])
+   #postのuser_idと現在ログインしているユーザーが一致していないか判断する
    if @post.user_id != @current_user.id
+     #flashでメッセージを表示する
      flash[:notice] = "権限がありません"
+     #redirect_toでpostsのindexに飛ばす
      redirect_to("/posts/index")
    end
  end

@@ -3,18 +3,23 @@
     <div class="form-heading">ログイン</div>
     <div class="form users-form">
       <div class="form-body">
-
+  <!--　エラーメッセージがあった場合の処理　-->
     <% if @error_message %>
        <div class="form-error">
+             <!--　エラーメッセージを表示する　-->
             <%= @error_message %>
       </div>
     <% end %>
 
+  <!--　入力の受け取り　-->
     <%= form_tag("/login") do %>
       <p>メールアドレス</p>
+        <!--　入力されたことのあるemailの表示と入力フォーム　-->
       <input name="email" value="<%= @email %>">
       <p>パスワード</p>
+      <!--　入力されたことのあるpasswardの表示と入力フォーム　-->
       <input type="password" name="password" value="<%= @password %>">
+       <!--　ボタンであることを表す　-->
       <input type="submit" value="ログイン">
     <% end %>
 

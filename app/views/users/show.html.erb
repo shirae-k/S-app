@@ -2,27 +2,34 @@
   <div class="container">
     <div class="user">
       <div class = "user-image">
+       <!--　ユーザーのプロフィール画像の表示　-->
       <img src = "<%= "/user_images/#{@user.image_name}" %>">
         </div>
+        <!--　ユーザーの名前の表示　-->
       <h2><%= @user.name %></h2>
+      <!-- 現在ログインしているユーザーと、ユーザーのidが一致したときの処理 -->
       <% if @current_user.id == @user.id %>
+        <!-- 編集ができるようにlinkしている -->
       <%= link_to("編集","/users/#{@user.id}/edit")%>
       <% end %>
     </div>
 
 
     <ul class="user-tabs">
+        <!-- ユーザー投稿一覧へのリンク -->
       <li class="active"><%= link_to("投稿", "/users/#{@user.id}") %></li>
+      <!-- ユーザーがいいねした一覧へのリンク -->
       <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
     </ul>
 
 
-
+    <!-- ユーザーが投稿したpostの分配 -->
     <% @user.posts.each do |post| %>
 
       <div class="user-posts-index-item">
-
+            <!-- postの詳細ページへのリンク -->
             <%= link_to("/posts/#{post.id}") do  %>
+              <!-- post表示 -->
             <img src="<%="/post_image/#{post.content}"%>"
             <% end %>
           </div>

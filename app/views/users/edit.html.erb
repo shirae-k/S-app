@@ -3,15 +3,19 @@
     <div class="form-heading">ユーザー情報の編集</div>
     <div class="form users-form">
       <div class="form-body">
-
+        <!--　入力の受け取り　-->
        <%= form_tag("/users/#{@user.id}/update",{multipart: true}) do %>
 
         <p>ユーザー名</p>
+        <!--　現在ログインしているユーザーの名前の表示　-->
         <input name="name" value  ="<%= @user.name%>" >
         <p>メールアドレス</p>
+        <!--　現在ログインしているユーザーのメールアドレスの表示　-->
         <input  name="email" value = "<%= @user.email %>">
         <p>画像</p>
+        <!--　プロフィール画像の変更ができるように、画像の選択ができる　-->
         <input name= "image" type="file">
+         <!--　ボタンであることを表す　-->
         <input type="submit" value="保存">
         <% end %>
       </div>
