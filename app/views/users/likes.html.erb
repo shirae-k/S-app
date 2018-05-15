@@ -33,11 +33,14 @@
               <!--　いいねされたユーザーの名前表示とプロフィールへのリンク　-->
             <%= link_to(post.user.name, "/users/#{post.user.id}") %>
           </div>
+
+
+
           <div class= "likes-posts">
               <!--　いいねされたユーザーの投稿の詳細ページへのリンク　-->
           <%= link_to("/posts/#{post.id}") do  %>
             <!--　いいねされたユーザーの投稿　-->
-          <img src="<%="/post_image/#{post.content}"%>"
+          <img src="<%="/post_image/#{post.content}"%>">
           <% end %>
           </div>
         </div>

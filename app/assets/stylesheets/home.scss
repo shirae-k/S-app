@@ -78,6 +78,13 @@ header {
   line-height: 64px;
 }
 
+.header-logo img{
+position:absolute; top: 10px; left: 15px;
+  width: 115px;
+  height: 45px;
+}
+
+
 .header-logo a{
   color: #066eaa;
   font-size: 43px;
@@ -155,7 +162,6 @@ header {
 /* about ================================ */
 .about-main {
   padding: 250px;
-  color: black;
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: 950px;
@@ -167,29 +173,29 @@ header {
   font-size: 64px;
   font-weight: 500;
   line-height: 1.4;
+  position:absolute;  top: 170px; left: 300px;
 }
 
 .about-main p {
-    font-family: 'Yu Gothic';
+  font-family: 'Yu Gothic';
   font-weight: 200;
   font-size: 25px;
+  position:absolute; top: 250px; left: 300px;
 }
 
-.about-img {
-  width: 84%;
-}
-.back-color{
-  background-color: #d3dee5;
-}
 .Mr-pict img{
   width: 170px;
   height: 170px;
   margin-right: 30px;
-  position:absolute; right: 50px; bottom: 1px;
+  position:absolute; right: 80px; top: 400px;
   float: right;
-
-
 }
+
+.back-color{
+  height: 613px;
+  background-color: #d3dee5;
+}
+
 /* フォーム================================ */
 
 

@@ -19,7 +19,7 @@ def like_posts
 
 #eachで分配し、一つずつpostが入るようにする
       likes.each do |like|
-        #likeしたpostを一つずつ取得し、postに代入
+        #いいねしたpostを一つずつ取得し、postに代入
       post = Post.find_by(id: like.post_id)
       #posts.pushで配列に入れる
       posts.push(post)

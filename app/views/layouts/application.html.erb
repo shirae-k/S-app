@@ -15,10 +15,18 @@
          <div class="header-logo">
 
            <% if @current_user %>
-                 <%= link_to("Picts", "/posts/index") %>
+
+
+                 <%= link_to( "/posts/index")  do %>
+                <img src="<%="/picts logo.png"%>"
+                <% end %>
+
             <% else %>
-                <%= link_to("Picts", "/") %>
+
+                <%= link_to("/")  do %>
+                <img src="<%="/picts logo.png"%>"
            <% end %>
+          <% end %>
 
          </div>
          <ul class="header-menus">
